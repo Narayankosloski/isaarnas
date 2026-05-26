@@ -4,816 +4,151 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Isa Arnass | Fotógrafa & Diretora de Fotografia</title>
+<title>isa arnas </title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
 
-:root{
-    --bg:#0A100D;
-    --bg-soft:#101813;
-    --card:rgba(20, 31, 25, 0.8);
-
-    --green:#1D2C24;
-    --green-light:#466B5D;
-
-    --text:#F5F3EE;
-    --muted:#BFC8C2;
-
-    --border:rgba(255,255,255,.06);
-}
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
 }
 
 body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    overflow-x:hidden;
+overflow:hidden;
+background:#000;
+height:100vh;
 }
 
-/* ---------------- VIDEO BACKGROUND ADJUSTMENT ---------------- */
-
-.hero-video{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:-1; /* Coloca o vídeo atrás de tudo */
-    animation:zoomVideo 20s ease-in-out infinite alternate;
+.slide{
+position:fixed;
+inset:0;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:1s;
 }
 
-@keyframes zoomVideo{
-    from{
-        transform:scale(1);
-    }
-    to{
-        transform:scale(1.08);
-    }
+.slide.active{
+opacity:1;
 }
 
-/* ---------------- NAV ---------------- */
-
-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    padding:28px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    z-index:1000;
-
-    background:rgba(10,16,13,.85);
-    backdrop-filter:blur(20px);
-
-    border-bottom:1px solid var(--border);
+.menu{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+z-index:100;
+text-align:center;
+color:white;
 }
 
-.logo{
-    font-family:'Cormorant Garamond',serif;
-    font-size:2rem;
-    letter-spacing:3px;
-}
-
-nav ul{
-    display:flex;
-    gap:40px;
-    list-style:none;
-}
-
-nav a{
-    color:var(--text);
-    text-decoration:none;
-    text-transform:uppercase;
-    font-size:.8rem;
-    letter-spacing:2px;
-    transition:.3s;
-}
-
-nav a:hover{
-    color:var(--green-light);
-}
-
-/* ---------------- HERO ---------------- */
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-    background: transparent; /* Torna a seção transparente para ver o vídeo */
-}
-
-.hero-overlay{
-    position:absolute;
-    inset:0;
-
-    background:
-    linear-gradient(
-        rgba(10,16,13,.55),
-        rgba(10,16,13,.75)
-    );
-
-    z-index:1;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-}
-
-.hero h1{
-    font-family:'Cormorant Garamond',serif;
-    font-size:clamp(5rem,12vw,11rem);
-    font-weight:300;
-    line-height:.85;
-    letter-spacing:8px;
-}
-
-.hero p{
-    margin-top:25px;
-    color:var(--muted);
-    text-transform:uppercase;
-    letter-spacing:4px;
-    font-size:.85rem;
-}
-
-.hero .tagline{
-    margin-top:40px;
-    font-size:1rem;
-    letter-spacing:1px;
-    color:var(--text);
-}
-
-.scroll{
-    margin-top:70px;
-    opacity:.5;
-    letter-spacing:3px;
-    font-size:.8rem;
-}
-
-/* ---------------- GENERAL ---------------- */
-
-section{
-    padding:140px 8%;
-    position: relative;
-    z-index: 2;
-    background: transparent; /* Garante que o fundo não cubra o vídeo */
-}
-
-.alt{
-    background: rgba(16, 24, 19, 0.4); /* Fundo semi-transparente para as seções 'alt' */
-    backdrop-filter: blur(5px);
-}
-
-.title{
-    font-family:'Cormorant Garamond',serif;
-    font-size:clamp(3rem,5vw,5rem);
-    font-weight:400;
-    margin-bottom:70px;
-}
-
-/* ---------------- MANIFESTO ---------------- */
-
-.manifesto{
-    text-align:center;
-}
-
-.manifesto p{
-    max-width:1000px;
-    margin:auto;
-    font-family:'Cormorant Garamond',serif;
-    font-size:clamp(2rem,4vw,4rem);
-    line-height:1.2;
-}
-
-/* ---------------- WORK GRID ---------------- */
-
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(12,1fr);
-    gap:25px;
-}
-
-.photo{
-    position:relative;
-    overflow:hidden;
-    border-radius:12px;
-    border:1px solid var(--border);
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(22, 36, 29, 0.8),
-        rgba(16, 24, 19, 0.8)
-    );
-
-    transition:.5s;
-}
-
-.photo:hover{
-    transform:translateY(-10px);
-    border-color:rgba(70,107,93,.5);
-}
-
-.photo::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    background:
-    radial-gradient(
-        circle at top left,
-        rgba(70,107,93,.2),
-        transparent 50%
-    );
-}
-
-.photo::after{
-    content:"ISA ARNASS";
-    position:absolute;
-    bottom:20px;
-    left:20px;
-
-    font-family:'Cormorant Garamond',serif;
-    letter-spacing:3px;
-    opacity:.15;
-}
-
-.big{
-    grid-column:span 8;
-    height:600px;
-}
-
-.small{
-    grid-column:span 4;
-    height:600px;
-}
-
-.wide{
-    grid-column:span 12;
-    height:380px;
-}
-
-/* ---------------- CINEMA ---------------- */
-
-.project{
-    padding:40px 0;
-    border-bottom:1px solid var(--border);
-}
-
-.project h3{
-    font-family:'Cormorant Garamond',serif;
-    font-size:2.5rem;
-    font-weight:400;
-}
-
-.project span{
-    display:block;
-    margin-top:10px;
-    color:var(--muted);
-}
-
-/* ---------------- JOURNAL ---------------- */
-
-.journal-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-}
-
-.journal-card{
-    background:var(--card);
-    padding:45px;
-    border-radius:12px;
-    border:1px solid var(--border);
-    transition:.4s;
-    backdrop-filter: blur(10px);
-}
-
-.journal-card:hover{
-    transform:translateY(-8px);
-}
-
-.journal-card h3{
-    font-family:'Cormorant Garamond',serif;
-    font-size:2rem;
-    margin-bottom:15px;
-}
-
-.journal-card p{
-    color:var(--muted);
-    line-height:1.8;
-}
-
-/* ---------------- ABOUT ---------------- */
-
-.about{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:80px;
-    align-items:center;
-}
-
-.portrait{
-    height:700px;
-    border-radius:12px;
-    border:1px solid var(--border);
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(22, 36, 29, 0.8),
-        rgba(15, 23, 19, 0.8)
-    );
-
-    position:relative;
-}
-
-.photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    border-radius:12px;
-}
-
-.portrait img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    border-radius:12px;
-}
-
-.about-text h2{
-    font-family:'Cormorant Garamond',serif;
-    font-size:4rem;
-    margin-bottom:25px;
-}
-
-.about-text p{
-    line-height:2;
-    color:var(--muted);
-}
-
-/* ---------------- CONTACT ---------------- */
-
-.contact{
-    min-height:90vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-
-    background: rgba(7, 11, 9, 0.6);
-    backdrop-filter: blur(10px);
-}
-
-.contact h2{
-    font-family:'Cormorant Garamond',serif;
-    font-size:clamp(3rem,7vw,6rem);
-    font-weight:300;
-}
-
-.contact p{
-    margin-top:20px;
-    color:var(--muted);
+.menu h1{
+font-size:clamp(4rem,10vw,8rem);
+letter-spacing:10px;
+margin-bottom:20px;
 }
 
 .links{
-    margin-top:50px;
+display:flex;
+justify-content:center;
+gap:30px;
 }
 
 .links a{
-    display:block;
-    margin:18px 0;
-
-    color:var(--text);
-    text-decoration:none;
-
-    letter-spacing:3px;
-    transition:.3s;
-}
-
-.links a:hover{
-    color:var(--green-light);
-}
-
-/* ---------------- FOOTER ---------------- */
-
-footer{
-    background: rgba(7, 11, 9, 0.8);
-    border-top:1px solid var(--border);
-    position: relative;
-    z-index: 2;
-    text-align:center;
-    padding:30px;
-}
-
-footer p{
-    color:var(--muted);
-    font-size:.8rem;
-    letter-spacing:2px;
-}
-
-/* ---------------- RESPONSIVE ---------------- */
-
-/* ---------------- MOBILE ---------------- */
-
-@media (max-width: 900px){
-
-nav{
-    padding:18px 20px;
-    flex-direction:column;
-    gap:15px;
-}
-
-.logo{
-    font-size:1.6rem;
-}
-
-nav ul{
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:12px;
-}
-
-nav a{
-    font-size:.65rem;
-    letter-spacing:1px;
-}
-
-/* HERO */
-
-.hero{
-    padding:120px 20px 60px;
-}
-
-.hero h1{
-    font-size:4.5rem;
-    letter-spacing:3px;
-    line-height:.9;
-}
-
-.hero p{
-    font-size:.7rem;
-    letter-spacing:2px;
-}
-
-.hero .tagline{
-    font-size:.95rem;
-    line-height:1.6;
-    padding:0 15px;
+color:white;
+text-decoration:none;
+font-size:.9rem;
+letter-spacing:3px;
+text-transform:uppercase;
 }
 
 .scroll{
-    margin-top:50px;
-}
-
-/* GERAL */
-
-section{
-    padding:90px 20px;
-}
-
-.title{
-    font-size:2.5rem;
-    margin-bottom:40px;
-}
-
-/* MANIFESTO */
-
-.manifesto p{
-    font-size:1.8rem;
-}
-
-/* GALERIA */
-
-.gallery{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-}
-
-.big,
-.small,
-.wide{
-    height:260px;
-}
-
-.photo{
-    width:100%;
-}
-
-.photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-}
-
-/* CINEMA */
-
-.project{
-    padding:25px 0;
-}
-
-.project h3{
-    font-size:1.8rem;
-}
-
-/* JOURNAL */
-
-.journal-grid{
-    grid-template-columns:1fr;
-}
-
-.journal-card{
-    padding:30px;
-}
-
-.journal-card h3{
-    font-size:1.6rem;
-}
-
-/* ABOUT */
-
-.about{
-    grid-template-columns:1fr;
-    gap:40px;
-}
-
-.portrait{
-    height:420px;
-}
-
-.about-text h2{
-    font-size:2.8rem;
-}
-
-.about-text p{
-    font-size:.95rem;
-    line-height:1.9;
-}
-
-/* CONTACT */
-
-.contact{
-    min-height:auto;
-    padding:100px 20px;
-}
-
-.contact h2{
-    font-size:2.7rem;
-}
-
-.contact p{
-    font-size:.95rem;
-}
-
-.links a{
-    font-size:.85rem;
-    letter-spacing:2px;
-}
-
-/* FOOTER */
-
-footer{
-    padding:25px 15px;
-}
-
-footer p{
-    font-size:.7rem;
-}
-
+margin-top:40px;
+font-size:.8rem;
+letter-spacing:2px;
+opacity:.7;
 }
 
 </style>
 </head>
+
 <body>
 
-    <!-- Vídeo movido para o topo do body e configurado como fundo fixo -->
-    <video class="hero-video" autoplay muted loop playsinline>
-        <source src="video.mp4" type="video/mp4">
-    </video>
+<div class="slide active"
+style="background-image:url('a.jpg')"></div>
 
-<nav>
-    <div class="logo">ISA ARNASS</div>
+<div class="slide"
+style="background-image:url('d.jpg')"></div>
 
-    <ul>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#cinema">Cinema</a></li>
-        <li><a href="#journal">Journal</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+<div class="slide"
+style="background-image:url('f.jpg')"></div>
 
-<section class="hero">
+<div class="slide"
+style="background-image:url('g.jpg')"></div>
 
-    <div class="hero-overlay"></div>
+<div class="menu">
 
-    <div class="hero-content">
+<h1>ISA ARNAS</h1>
 
-        <h1>
-            ISA<br>
-            ARNASS
-        </h1>
-
-        <p>
-            Fotógrafa • Diretora de Fotografia • Still Photographer
-        </p>
-
-        <div class="tagline">
-            Imagens que habitam a memória.
-        </div>
-
-        <div class="scroll">
-            ↓ EXPLORE
-        </div>
-
-    </div>
-
-</section>
-
-<section class="manifesto alt">
-
-    <p>
-        Entre luz, silêncio e narrativa,
-        construo imagens que permanecem.
-    </p>
-
-</section>
-
-<section id="work">
-
-    <h2 class="title">
-        Selected Work
-    </h2>
-
-    <div class="gallery">
-
-        <div class="photo big">
-    <img src="a.jpg" alt="">
+<div class="links">
+<a href="index.html">Home</a>
+<a href="still.html">Still</a>
+<a href="works.html">Works</a>
+<a href="sobre.html">Sobre</a>
 </div>
 
-<div class="photo small">
-    <img src="s.jpg" alt="">
+<div class="scroll">
+SCROLL ↓
 </div>
 
-<div class="photo small">
-    <img src="d.jpg" alt="">
 </div>
 
-<div class="photo big">
-    <img src="f.jpg" alt="">
-</div>
+<script>
 
-<div class="photo wide">
-    <img src="g.jpg" alt="">
-</div>
+const slides = document.querySelectorAll('.slide');
 
-    </div>
+let current = 0;
+let scrolling = false;
 
-</section>
+window.addEventListener('wheel', (e) => {
 
-<section id="cinema" class="alt">
+    if (scrolling) return;
 
-    <h2 class="title">
-        Direção de Fotografia
-    </h2>
+    scrolling = true;
 
-    <div class="project">
-        <h3>Aurora</h3>
-        <span>Curta-metragem • 2025</span>
-    </div>
+    slides[current].classList.remove('active');
 
-    <div class="project">
-        <h3>Entre Sombras</h3>
-        <span>Videoclipe • 2024</span>
-    </div>
+    if (e.deltaY > 0) {
 
-    <div class="project">
-        <h3>Raízes</h3>
-        <span>Documentário • 2023</span>
-    </div>
+        current++;
 
-</section>
+        if (current >= slides.length) {
+            current = 0; // volta para a primeira
+        }
 
-<section id="journal">
+    } else {
 
-    <h2 class="title">
-        Visual Journal
-    </h2>
+        current--;
 
-    <div class="journal-grid">
+        if (current < 0) {
+            current = slides.length - 1; // vai para a última
+        }
 
-        <div class="journal-card">
-            <h3>Estudos de Luz</h3>
-            <p>
-                Pesquisas visuais, atmosferas e observações.
-            </p>
-        </div>
+    }
 
-        <div class="journal-card">
-            <h3>Texturas</h3>
-            <p>
-                Matérias, superfícies e detalhes do cotidiano.
-            </p>
-        </div>
+    slides[current].classList.add('active');
 
-        <div class="journal-card">
-            <h3>Bastidores</h3>
-            <p>
-                Processos criativos e momentos entre cenas.
-            </p>
-        </div>
+    setTimeout(() => {
+        scrolling = false;
+    }, 800);
 
-        <div class="journal-card">
-            <h3>Referências</h3>
-            <p>
-                Cinema, fotografia e arte contemporânea.
-            </p>
-        </div>
+});
 
-    </div>
-
-</section>
-
-<section id="about" class="alt">
-
-    <div class="about">
-
-        <div class="portrait">
-    <img src="e.jpg" alt="Isa Arnass">
-</div>
-
-        <div class="about-text">
-
-            <h2>Sobre</h2>
-
-            <p>
-                Isa Arnass é fotógrafa e diretora de fotografia interessada
-                na construção de atmosferas visuais através da luz, da composição
-                e da observação sensível do mundo.
-            </p>
-
-            <br>
-
-            <p>
-                Seu trabalho transita entre fotografia autoral,
-                audiovisual e fotografia still, explorando narrativas
-                visuais marcadas por delicadeza, textura e presença.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section class="contact" id="contact">
-
-    <div>
-
-        <h2>
-            Vamos criar algo juntos.
-        </h2>
-
-        <p>
-            Disponível para projetos editoriais, autorais e audiovisuais.
-        </p>
-
-        <div class="links">
-            <a href="#">INSTAGRAM</a>
-            <a href="#">HELLO@ISAARNASS.COM</a>
-            <a href="#">WHATSAPP</a>
-        </div>
-
-    </div>
-
-</section>
-
-<footer>
-    <p>ISA ARNASS © 2026</p>
-</footer>
+</script>
 
 </body>
 </html>
