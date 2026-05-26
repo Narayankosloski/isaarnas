@@ -13,7 +13,7 @@
 :root{
     --bg:#0A100D;
     --bg-soft:#101813;
-    --card:#141F19;
+    --card:rgba(20, 31, 25, 0.8);
 
     --green:#1D2C24;
     --green-light:#466B5D;
@@ -39,6 +39,28 @@ body{
     color:var(--text);
     font-family:'Inter',sans-serif;
     overflow-x:hidden;
+}
+
+/* ---------------- VIDEO BACKGROUND ADJUSTMENT ---------------- */
+
+.hero-video{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-1; /* Coloca o vídeo atrás de tudo */
+    animation:zoomVideo 20s ease-in-out infinite alternate;
+}
+
+@keyframes zoomVideo{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.08);
+    }
 }
 
 /* ---------------- NAV ---------------- */
@@ -95,19 +117,20 @@ nav a:hover{
     text-align:center;
     position:relative;
     overflow:hidden;
+    background: transparent; /* Torna a seção transparente para ver o vídeo */
 }
 
-.hero::before{
-    content:"";
+.hero-overlay{
     position:absolute;
-    width:1000px;
-    height:1000px;
+    inset:0;
+
     background:
-    radial-gradient(
-        circle,
-        rgba(70,107,93,.18),
-        transparent 70%
+    linear-gradient(
+        rgba(10,16,13,.55),
+        rgba(10,16,13,.75)
     );
+
+    z-index:1;
 }
 
 .hero-content{
@@ -149,10 +172,14 @@ nav a:hover{
 
 section{
     padding:140px 8%;
+    position: relative;
+    z-index: 2;
+    background: transparent; /* Garante que o fundo não cubra o vídeo */
 }
 
 .alt{
-    background:var(--bg-soft);
+    background: rgba(16, 24, 19, 0.4); /* Fundo semi-transparente para as seções 'alt' */
+    backdrop-filter: blur(5px);
 }
 
 .title{
@@ -193,8 +220,8 @@ section{
     background:
     linear-gradient(
         135deg,
-        #16241D,
-        #101813
+        rgba(22, 36, 29, 0.8),
+        rgba(16, 24, 19, 0.8)
     );
 
     transition:.5s;
@@ -277,6 +304,7 @@ section{
     border-radius:12px;
     border:1px solid var(--border);
     transition:.4s;
+    backdrop-filter: blur(10px);
 }
 
 .journal-card:hover{
@@ -311,11 +339,19 @@ section{
     background:
     linear-gradient(
         135deg,
-        #16241D,
-        #0F1713
+        rgba(22, 36, 29, 0.8),
+        rgba(15, 23, 19, 0.8)
     );
 
     position:relative;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    border-radius:12px;
 }
 
 .portrait img{
@@ -323,6 +359,7 @@ section{
     height:100%;
     object-fit:cover;
     display:block;
+    border-radius:12px;
 }
 
 .about-text h2{
@@ -345,7 +382,8 @@ section{
     align-items:center;
     text-align:center;
 
-    background:#070B09;
+    background: rgba(7, 11, 9, 0.6);
+    backdrop-filter: blur(10px);
 }
 
 .contact h2{
@@ -381,9 +419,10 @@ section{
 /* ---------------- FOOTER ---------------- */
 
 footer{
-    background:#070B09;
+    background: rgba(7, 11, 9, 0.8);
     border-top:1px solid var(--border);
-
+    position: relative;
+    z-index: 2;
     text-align:center;
     padding:30px;
 }
@@ -396,41 +435,172 @@ footer p{
 
 /* ---------------- RESPONSIVE ---------------- */
 
-@media(max-width:900px){
+/* ---------------- MOBILE ---------------- */
+
+@media (max-width: 900px){
 
 nav{
-    padding:20px;
+    padding:18px 20px;
+    flex-direction:column;
+    gap:15px;
+}
+
+.logo{
+    font-size:1.6rem;
 }
 
 nav ul{
-    gap:15px;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
 }
 
 nav a{
     font-size:.65rem;
+    letter-spacing:1px;
 }
 
+/* HERO */
+
+.hero{
+    padding:120px 20px 60px;
+}
+
+.hero h1{
+    font-size:4.5rem;
+    letter-spacing:3px;
+    line-height:.9;
+}
+
+.hero p{
+    font-size:.7rem;
+    letter-spacing:2px;
+}
+
+.hero .tagline{
+    font-size:.95rem;
+    line-height:1.6;
+    padding:0 15px;
+}
+
+.scroll{
+    margin-top:50px;
+}
+
+/* GERAL */
+
+section{
+    padding:90px 20px;
+}
+
+.title{
+    font-size:2.5rem;
+    margin-bottom:40px;
+}
+
+/* MANIFESTO */
+
+.manifesto p{
+    font-size:1.8rem;
+}
+
+/* GALERIA */
+
 .gallery{
-    grid-template-columns:1fr;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
 }
 
 .big,
 .small,
 .wide{
-    grid-column:auto;
-    height:300px;
+    height:260px;
 }
 
-.about{
+.photo{
+    width:100%;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* CINEMA */
+
+.project{
+    padding:25px 0;
+}
+
+.project h3{
+    font-size:1.8rem;
+}
+
+/* JOURNAL */
+
+.journal-grid{
     grid-template-columns:1fr;
 }
 
-.portrait{
-    height:450px;
+.journal-card{
+    padding:30px;
 }
 
-section{
-    padding:100px 6%;
+.journal-card h3{
+    font-size:1.6rem;
+}
+
+/* ABOUT */
+
+.about{
+    grid-template-columns:1fr;
+    gap:40px;
+}
+
+.portrait{
+    height:420px;
+}
+
+.about-text h2{
+    font-size:2.8rem;
+}
+
+.about-text p{
+    font-size:.95rem;
+    line-height:1.9;
+}
+
+/* CONTACT */
+
+.contact{
+    min-height:auto;
+    padding:100px 20px;
+}
+
+.contact h2{
+    font-size:2.7rem;
+}
+
+.contact p{
+    font-size:.95rem;
+}
+
+.links a{
+    font-size:.85rem;
+    letter-spacing:2px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:25px 15px;
+}
+
+footer p{
+    font-size:.7rem;
 }
 
 }
@@ -438,6 +608,11 @@ section{
 </style>
 </head>
 <body>
+
+    <!-- Vídeo movido para o topo do body e configurado como fundo fixo -->
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="video.mp4" type="video/mp4">
+    </video>
 
 <nav>
     <div class="logo">ISA ARNASS</div>
@@ -452,6 +627,8 @@ section{
 </nav>
 
 <section class="hero">
+
+    <div class="hero-overlay"></div>
 
     <div class="hero-content">
 
