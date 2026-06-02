@@ -5,8 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>About | Isa Arnass</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
+cursor:none;
+}
 
 body{
 margin:0;
@@ -104,6 +113,57 @@ height:450px;
 
 }
 
+.links{
+display:flex;
+justify-content:center;
+gap:24px;
+}
+
+.links a{
+color:white;
+text-decoration:none;
+font-size:.72rem;
+letter-spacing:4px;
+text-transform:uppercase;
+opacity:.85;
+transition:.3s;
+}
+
+.links a:hover{
+opacity:1;
+}
+
+.scroll{
+margin-top:35px;
+font-size:.65rem;
+letter-spacing:4px;
+opacity:.6;
+}
+
+/* Cursor personalizado */
+
+.cursor{
+position:fixed;
+width:12px;
+height:12px;
+border-radius:50%;
+background:white;
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:9999;
+transition:
+width .2s,
+height .2s,
+opacity .2s;
+}
+
+.cursor.hover{
+width:22px;
+height:22px;
+background:transparent;
+border:1px solid white;
+}
+
 </style>
 </head>
 <body>
@@ -136,6 +196,31 @@ narrativa e memória através da imagem.
 </div>
 
 </div>
+
 </section>
+<div class="cursor"></div>
+<script>
+/* Cursor */
+
+const cursor = document.querySelector('.cursor');
+
+document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+document.querySelectorAll('a').forEach(link => {
+
+    link.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+    });
+
+    link.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+    });
+
+});
+
+</script>
 </body>
 </html>

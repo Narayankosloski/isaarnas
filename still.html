@@ -10,6 +10,14 @@
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
+cursor:none;
+}
+
 body{
 margin:0;
 background:#0A100D;
@@ -96,7 +104,27 @@ font-weight:300;
 
 }
 
+.cursor{
+position:fixed;
+width:12px;
+height:12px;
+border-radius:50%;
+background:white;
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:9999;
+transition:
+width .2s,
+height .2s,
+opacity .2s;
+}
 
+.cursor.hover{
+width:22px;
+height:22px;
+background:transparent;
+border:1px solid white;
+}
 </style>
 </head>
 <body>
@@ -108,7 +136,7 @@ font-weight:300;
 </nav>
 
 <section class="hero">
-<h1>Still</h1>
+<h1>Stills</h1>
 </section>
 
 <div class="gallery">
@@ -121,6 +149,9 @@ font-weight:300;
 <div class="project"><img src="h.jpg"></div>
 
 </div>
+
+<div class="cursor"></div>
+
 <script>
 
 const projects = document.querySelectorAll('.project');
@@ -144,6 +175,29 @@ const observer = new IntersectionObserver((entries)=>{
 projects.forEach(project=>{
     observer.observe(project);
 });
+
+
+/* Cursor */
+
+const cursor = document.querySelector('.cursor');
+
+document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+document.querySelectorAll('a').forEach(link => {
+
+    link.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+    });
+
+    link.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+    });
+
+});
+
 
 </script>
 </body>

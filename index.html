@@ -110,12 +110,119 @@ height:22px;
 background:transparent;
 border:1px solid white;
 }
+/* NAV */
 
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+
+    padding:30px 8%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(0,0,0,.15);
+    backdrop-filter:blur(15px);
+}
+
+nav a,
+.dropbtn{
+    color:#F5F3EE;
+    text-decoration:none;
+    font-size:.85rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    background:none;
+    border:none;
+
+    cursor:none;
+
+    transition:.3s;
+}
+
+nav a:hover,
+.dropbtn:hover{
+    opacity:.7;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+    position:relative;
+}
+
+.dropdown-content{
+    position:absolute;
+    top:140%;
+    right:0;
+
+    min-width:220px;
+
+    background:rgba(10,16,13,.95);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(10px);
+
+    transition:.35s ease;
+}
+
+.dropdown-content a{
+    display:block;
+    padding:16px 20px;
+}
+
+.dropdown-content a:hover{
+    background:rgba(255,255,255,.04);
+}
+
+.dropdown.active .dropdown-content{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
 </style>
 </head>
 
 <body>
 
+<nav>
+
+    <a href="home.html">ISA ARNASS</a>
+
+    <div class="dropdown">
+
+        <button class="dropbtn">
+            PORTFOLIO +
+        </button>
+
+        <div class="dropdown-content">
+
+            <a href="still.html">Still Photography</a>
+
+            <a href="cinema.html">
+                Direção de Fotografia
+            </a>
+
+            <a href="about.html">
+                Sobre
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
 <div class="slide active"
 style="background-image:url('a.jpg')"></div>
 
@@ -204,6 +311,23 @@ document.querySelectorAll('a').forEach(link => {
     link.addEventListener('mouseleave', () => {
         cursor.classList.remove('hover');
     });
+
+});
+
+const dropdown = document.querySelector('.dropdown');
+const button = document.querySelector('.dropbtn');
+
+button.addEventListener('click', (e)=>{
+
+    e.stopPropagation();
+
+    dropdown.classList.toggle('active');
+
+});
+
+document.addEventListener('click', ()=>{
+
+    dropdown.classList.remove('active');
 
 });
 
