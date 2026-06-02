@@ -11,8 +11,62 @@
 body{
 margin:0;
 background:#0A100D;
+font-family:Inter,sans-serif;
 color:white;
-font-family:Arial;
+}
+
+nav{
+padding:30px 8%;
+display:flex;
+justify-content:space-between;
+border-bottom:1px solid rgba(255,255,255,.08);
+font-size:2rem;
+font-family:"Cormorant Garamond",serif;
+font-weight:100;
+}
+
+a{
+color:white;
+text-decoration:none;
+}
+
+.hero{
+padding:120px 8% 60px;
+}
+
+.hero h1{
+font-size:6rem;
+font-family:"Cormorant Garamond",serif;
+font-weight:300;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+padding:0 8% 100px;
+}
+
+.photo{
+height:700px;
+overflow:hidden;
+border-radius:12px;
+}
+
+.photo img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+@media(max-width:900px){
+.gallery{
+grid-template-columns:1fr;
+}
+.photo{
+height:450px;
+}
 }
 
 .about{
@@ -54,14 +108,22 @@ height:450px;
 </head>
 <body>
 
+<section class="hero">
+<nav>
+<a href="index.html">ISA ARNASS</a>
+<a href="index.html">home</a>
+</nav>
+</section>
+	
 <div class="about">
 
 <img src="e.jpg">
 
 <div>
 
+<section class="hero">
 <h1>Isa Arnass</h1>
-
+</section>
 <p>
 Fotógrafa, diretora de fotografia e artista visual.
 </p>
@@ -74,6 +136,6 @@ narrativa e memória através da imagem.
 </div>
 
 </div>
-
+</section>
 </body>
 </html>

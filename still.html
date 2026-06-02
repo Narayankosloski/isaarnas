@@ -22,6 +22,9 @@ padding:30px 8%;
 display:flex;
 justify-content:space-between;
 border-bottom:1px solid rgba(255,255,255,.08);
+font-size:2rem;
+font-family:"Cormorant Garamond",serif;
+font-weight:100;
 }
 
 a{
@@ -30,7 +33,7 @@ text-decoration:none;
 }
 
 .hero{
-padding:120px 8% 60px;
+padding:50px 8% 60px;
 }
 
 .hero h1{
@@ -39,41 +42,68 @@ font-family:"Cormorant Garamond",serif;
 font-weight:300;
 }
 
-.gallery{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px;
-padding:0 8% 100px;
+/* PROJETOS */
+
+.project{
+    padding:100px 8%;
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    opacity:0;
+    transition:opacity 2s ease;
 }
 
-.photo{
-height:700px;
-overflow:hidden;
-border-radius:12px;
+.project.show{
+    opacity:1;
 }
 
-.photo img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
+.project h2{
+    font-size:2rem;
+    font-weight:300;
+    margin-bottom:30px;
+    letter-spacing:2px;
 }
+
+.image-wrapper{
+    overflow:hidden;
+    border-radius:12px;
+}
+
+.project img{
+    width:100%;
+    display:block;
+    border-radius:12px;
+}
+
+/* RESPONSIVO */
 
 @media(max-width:900px){
-.gallery{
-grid-template-columns:1fr;
+
+.hero{
+    height:60vh;
 }
-.photo{
-height:450px;
+
+.hero h1{
+    font-size:4rem;
 }
+
+.project{
+    padding:60px 6%;
 }
+
+.project h2{
+    font-size:1.5rem;
+}
+
+}
+
 
 </style>
 </head>
 <body>
 
 <nav>
-<a href="home.html">ISA ARNASS</a>
+<a href="index.html">ISA ARNASS</a>
+<a href="index.html">home</a>
 <a href="about.html">About</a>
 </nav>
 
@@ -83,14 +113,38 @@ height:450px;
 
 <div class="gallery">
 
-<div class="photo"><img src="a.jpg"></div>
-<div class="photo"><img src="s.jpg"></div>
-<div class="photo"><img src="d.jpg"></div>
-<div class="photo"><img src="f.jpg"></div>
-<div class="photo"><img src="g.jpg"></div>
-<div class="photo"><img src="h.jpg"></div>
+<div class="project"><img src="a.jpg"></div>
+<div class="project"><img src="s.jpg"></div>
+<div class="project"><img src="d.jpg"></div>
+<div class="project"><img src="f.jpg"></div>
+<div class="project"><img src="g.jpg"></div>
+<div class="project"><img src="h.jpg"></div>
 
 </div>
+<script>
 
+const projects = document.querySelectorAll('.project');
+
+const observer = new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add('show');
+
+        }
+
+    });
+
+},{
+    threshold:0.15
+});
+
+projects.forEach(project=>{
+    observer.observe(project);
+});
+
+</script>
 </body>
 </html>
