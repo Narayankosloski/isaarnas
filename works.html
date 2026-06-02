@@ -13,7 +13,9 @@
 *{
     margin:0;
     padding:0;
+
     box-sizing:border-box;
+    cursor:none;
 }
 
 html{
@@ -133,6 +135,56 @@ nav a{
 }
 
 }
+.links{
+display:flex;
+justify-content:center;
+gap:24px;
+}
+
+.links a{
+color:white;
+text-decoration:none;
+font-size:.72rem;
+letter-spacing:4px;
+text-transform:uppercase;
+opacity:.85;
+transition:.3s;
+}
+
+.links a:hover{
+opacity:1;
+}
+
+.scroll{
+margin-top:35px;
+font-size:.65rem;
+letter-spacing:4px;
+opacity:.6;
+}
+
+/* Cursor personalizado */
+
+.cursor{
+position:fixed;
+width:12px;
+height:12px;
+border-radius:50%;
+background:white;
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:9999;
+transition:
+width .2s,
+height .2s,
+opacity .2s;
+}
+
+.cursor.hover{
+width:22px;
+height:22px;
+background:transparent;
+border:1px solid white;
+}
 
 </style>
 </head>
@@ -172,7 +224,7 @@ nav a{
         <img src="d.jpg" alt="Projeto 03">
     </div>
 </div>
-
+<div class="cursor"></div>
 <script>
 
 const projects = document.querySelectorAll('.project');
@@ -195,6 +247,68 @@ const observer = new IntersectionObserver((entries)=>{
 
 projects.forEach(project=>{
     observer.observe(project);
+});
+
+
+
+const slides = document.querySelectorAll('.slide');
+
+let current = 0;
+let scrolling = false;
+
+window.addEventListener('wheel', (e) => {
+
+    if (scrolling) return;
+
+    scrolling = true;
+
+    slides[current].classList.remove('active');
+
+    if (e.deltaY > 0) {
+
+        current++;
+
+        if (current >= slides.length) {
+            current = 0;
+        }
+
+    } else {
+
+        current--;
+
+        if (current < 0) {
+            current = slides.length - 1;
+        }
+
+    }
+
+    slides[current].classList.add('active');
+
+    setTimeout(() => {
+        scrolling = false;
+    }, 800);
+
+});
+
+/* Cursor */
+
+const cursor = document.querySelector('.cursor');
+
+document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+document.querySelectorAll('a').forEach(link => {
+
+    link.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+    });
+
+    link.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+    });
+
 });
 
 </script>
