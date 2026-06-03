@@ -61,25 +61,37 @@ font-weight:300;
 }
 
 .links{
-display:flex;
-justify-content:center;
-gap:24px;
+    display:flex;
+    justify-content:center;
+    gap:24px;
 }
 
 .links a{
-color:white;
-text-decoration:none;
-font-size:.72rem;
-letter-spacing:4px;
-text-transform:uppercase;
-opacity:.85;
-transition:.3s;
+    color:white;
+    text-decoration:none;
+    font-size:.72rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    opacity:.8;
+
+    transition:
+        transform .4s ease,
+        opacity .4s ease;
 }
+
+/* todos diminuem */
+
+.links:hover a{
+    opacity:.25;
+}
+
+/* o selecionado cresce */
 
 .links a:hover{
-opacity:1;
+    opacity:1 !important;
+    transform:scale(1.15);
 }
-
 .scroll{
 margin-top:35px;
 font-size:.65rem;
@@ -152,44 +164,87 @@ nav a:hover,
 
 /* DROPDOWN */
 
-.dropdown{
-    position:relative;
-}
+.menu-overlay{
+    position:fixed;
+    top:0;
+    left:0;
 
-.dropdown-content{
-    position:absolute;
-    top:140%;
-    right:0;
+    width:100vw;
+    height:100vh;
 
-    min-width:220px;
-
-    background:rgba(10,16,13,.95);
+    background:rgba(0,0,0,.92);
     backdrop-filter:blur(20px);
 
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:12px;
+    z-index:9999;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
     opacity:0;
     visibility:hidden;
 
-    transform:translateY(10px);
-
-    transition:.35s ease;
+    transition:.5s ease;
 }
 
-.dropdown-content a{
-    display:block;
-    padding:16px 20px;
-}
-
-.dropdown-content a:hover{
-    background:rgba(255,255,255,.04);
-}
-
-.dropdown.active .dropdown-content{
+.menu-overlay.active{
     opacity:1;
     visibility:visible;
-    transform:translateY(0);
+}
+
+.menu-button{
+    background:none;
+    border:none;
+    padding:0;
+
+    color:#F5F3EE;
+
+    font-size:.85rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    cursor:none;
+
+    transition:.3s;
+}
+
+.menu-button:hover{
+    opacity:.7;
+}
+
+
+.overlay-links{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+
+.overlay-links a{
+    font-size:3rem;
+    letter-spacing:6px;
+    text-transform:uppercase;
+    font-weight:300;
+
+    opacity:.8;
+
+    transition:
+        opacity .4s ease,
+        transform .4s ease;
+}
+
+.overlay-links:hover a{
+    opacity:.2;
+}
+
+.overlay-links a:hover{
+    opacity:1 !important;
+    transform:scale(1.08);
+}
+.current{
+    opacity:.25 !important;
+    pointer-events:none;
 }
 </style>
 </head>
@@ -199,24 +254,38 @@ nav a:hover,
 <nav>
 
     <a href="home.html">ISA ARNASS</a>
-
+    
     <div class="dropdown">
 
-        <button class="dropbtn">
-            PORTFOLIO +
+        <button class="menu-button">
+            |||
         </button>
 
-        <div class="dropdown-content">
 
-            <a href="still.html">Still Photography</a>
+            <div class="menu-overlay">
 
-            <a href="cinema.html">
-                Direção de Fotografia
-            </a>
+                <div class="overlay-links">
 
-            <a href="about.html">
-                Sobre
-            </a>
+                    <a href="home.html" class="current">
+                        HOME
+                    </a>
+
+                    <a href="still.html">
+                        STILLS
+                    </a>
+
+                    <a href="works.html">
+                        WORKS
+                    </a>
+
+                    <a href="about.html">
+                        ABOUT
+                    </a>
+
+                </div>
+
+            </div>
+
 
         </div>
 
@@ -237,7 +306,7 @@ style="background-image:url('g.jpg')"></div>
 
 <div class="menu">
 
-<h1>ISA ARNAS</h1>
+    <h1>ISA ARNAS</h1>
 
 <div class="links">
 <a href="index.html">Home</a>
@@ -314,20 +383,27 @@ document.querySelectorAll('a').forEach(link => {
 
 });
 
-const dropdown = document.querySelector('.dropdown');
-const button = document.querySelector('.dropbtn');
 
-button.addEventListener('click', (e)=>{
 
-    e.stopPropagation();
+const menuButton =
+document.querySelector('.menu-button');
 
-    dropdown.classList.toggle('active');
+const overlay =
+document.querySelector('.menu-overlay');
+
+menuButton.addEventListener('click',()=>{
+
+    overlay.classList.toggle('active');
 
 });
 
-document.addEventListener('click', ()=>{
+overlay.addEventListener('click',(e)=>{
 
-    dropdown.classList.remove('active');
+    if(e.target === overlay){
+
+        overlay.classList.remove('active');
+
+    }
 
 });
 
