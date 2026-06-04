@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Still Photography | Isa Arnass</title>
+<title>Still Photography | Isa Arnas</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
@@ -20,36 +20,13 @@ cursor:none;
 
 body{
 margin:0;
-background:#0A100D;
+background:#000;
 font-family:Inter,sans-serif;
 color:white;
 }
 
-/* NAV */
-nav{
-    padding:30px 8%;
-    display:flex;
-    color:#F5F3EE;
-    text-decoration:none;
-    justify-content:space-between;
-    font-family:'Cormorant Garamond', serif;
-    font-size:2rem;
-    font-weight:100;
-    letter-spacing:2px;s
-}
 
-nav a{
-    
-    padding:30px 8%;
-    display:flex;
-    color:#F5F3EE;
-    text-decoration:none;
-    justify-content:space-between;
-    font-family:'Cormorant Garamond', serif;
-    font-size:2rem;
-    font-weight:100;
-    letter-spacing:2px;
-}
+
 
 a{
 color:white;
@@ -57,7 +34,12 @@ text-decoration:none;
 }
 
 .hero{
-padding:50px 8% 60px;
+    height:80vh;
+    
+display:flex;
+align-items:center;
+padding:0 8%;
+position:relative;
 }
 
 .hero h1{
@@ -141,16 +123,198 @@ height:22px;
 background:transparent;
 border:1px solid white;
 }
+
+
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+
+    padding:50px 8%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    
+}
+
+nav a,
+.dropbtn{
+    color:#F5F3EE;
+    text-decoration:none;
+    font-size:.85rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    background:none;
+    border:none;
+
+    cursor:none;
+
+    transition:.3s;
+}
+
+nav a:hover,
+.dropbtn:hover{
+    opacity:.7;
+}
+
+/* DROPDOWN */
+
+/* DROPDOWN */
+
+.menu-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100vw;
+    height:100vh;
+
+    background:rgba(0,0,0,.92);
+    backdrop-filter:blur(20px);
+
+    z-index:9999;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.5s ease;
+}
+
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.menu-button{
+    background:none;
+    border:none;
+    padding:0;
+
+    color:#F5F3EE;
+
+    font-size:.85rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+
+    cursor:none;
+
+    transition:.3s;
+}
+
+.menu-button:hover{
+    opacity:.7;
+}
+
+
+.overlay-links{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+.overlay-links a{
+    font-size:3rem;
+    letter-spacing:6px;
+    text-transform:uppercase;
+    font-weight:300;
+
+    opacity:0;
+    transform:translateY(30px);
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease;
+}
+
+/* Quando abrir */
+
+.menu-overlay.active .overlay-links a{
+    opacity:.8;
+    transform:translateY(0);
+}
+
+/* Delay de cada item */
+
+.menu-overlay.active .overlay-links a:nth-child(1){
+    transition-delay:.1s;
+}
+
+.menu-overlay.active .overlay-links a:nth-child(2){
+    transition-delay:.2s;
+}
+
+.menu-overlay.active .overlay-links a:nth-child(3){
+    transition-delay:.3s;
+}
+
+.menu-overlay.active .overlay-links a:nth-child(4){
+    transition-delay:.4s;
+}
+
+.overlay-links a:hover{
+    opacity:1 !important;
+    transform:scale(1.08);
+}
+.current{
+    opacity:.25 !important;
+    pointer-events:none;
+}
 </style>
 </head>
 <body>
 
 <nav>
-<a href="index.html">ISA ARNASS</a>
-<a href="index.html">home</a>
-<a href="about.html">About</a>
-</nav>
 
+    <a href="index.html">ISA ARNASS</a>
+    
+    <div class="dropdown">
+
+        <button class="menu-button">
+            |||
+        </button>
+
+
+            <div class="menu-overlay">
+
+                <div class="overlay-links">
+
+                    <a href="index.html">
+                        HOME
+                    </a>
+
+                    <a href="still.html" class="current">
+                        STILLS
+                    </a>
+
+                    <a href="works.html">
+                        WORKS
+                    </a>
+
+                    <a href="about.html">
+                        ABOUT
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</nav>
 <section class="hero">
 <h1>Stills</h1>
 </section>
@@ -211,6 +375,30 @@ document.querySelectorAll('a').forEach(link => {
     link.addEventListener('mouseleave', () => {
         cursor.classList.remove('hover');
     });
+
+});
+
+
+
+const menuButton =
+document.querySelector('.menu-button');
+
+const overlay =
+document.querySelector('.menu-overlay');
+
+menuButton.addEventListener('click',()=>{
+
+    overlay.classList.toggle('active');
+
+});
+
+overlay.addEventListener('click',(e)=>{
+
+    if(e.target === overlay){
+
+        overlay.classList.remove('active');
+
+    }
 
 });
 
