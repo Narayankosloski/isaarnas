@@ -53,7 +53,7 @@ font-weight:300;
 .links{
     display:flex;
     justify-content:center;
-    gap:24px;
+    gap:100px;
 }
 
 .links a{
