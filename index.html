@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>isa arnas </title>
+<title>Isa Arnass</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/style.css">
-
-
 </head>
 
 <body>
@@ -18,74 +19,52 @@
 <nav>
 
     <a href="index.html">ISA ARNASS</a>
-    
+
     <div class="dropdown">
 
-        <button class="menu-button">
-            |||
-        </button>
+        <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-overlay">|||</button>
 
+        <div class="menu-overlay" id="menu-overlay">
 
-            <div class="menu-overlay">
+            <div class="overlay-links">
 
-                <div class="overlay-links">
-
-                    <a href="home.html" class="current">
-                        HOME
-                    </a>
-
-                    <a href="still.html">
-                        STILLS
-                    </a>
-
-                    <a href="works.html">
-                        WORKS
-                    </a>
-
-                    <a href="about.html">
-                        ABOUT
-                    </a>
-
-                </div>
+                <a href="index.html" class="current" aria-current="page">HOME</a>
+                <a href="still.html">STILLS</a>
+                <a href="works.html">WORKS</a>
+                <a href="about.html">ABOUT</a>
 
             </div>
-
 
         </div>
 
     </div>
 
 </nav>
-<div class="slide active"
-style="background-image:url('./img/a.jpg')"></div>
 
-<div class="slide"
-style="background-image:url('./img/d.jpg')"></div>
+<div class="slide active" style="background-image:url('./img/a.jpg')"></div>
+<div class="slide" style="background-image:url('./img/d.jpg')"></div>
+<div class="slide" style="background-image:url('./img/f.jpg')"></div>
+<div class="slide" style="background-image:url('./img/g.jpg')"></div>
 
-<div class="slide"
-style="background-image:url('./img/f.jpg')"></div>
+<div class="hero-menu">
 
-<div class="slide"
-style="background-image:url('./img/g.jpg')"></div>
+    <h1>ISA ARNASS</h1>
 
-<div class="menu">
+    <div class="links">
+        <a href="index.html">Home</a>
+        <a href="still.html">Still</a>
+        <a href="works.html">Works</a>
+        <a href="about.html">Sobre</a>
+    </div>
 
-    <h1>ISA ARNAS</h1>
-
-<div class="links">
-<a href="index.html">Home</a>
-<a href="still.html">Still</a>
-<a href="works.html">Works</a>
-<a href="about.html">Sobre</a>
-</div>
-
-<div class="scroll">
-SCROLL ↓
-</div>
+    <div class="scroll">SCROLL ↓</div>
 
 </div>
-<div class="cursor"></div>
+
+<div class="cursor" aria-hidden="true"></div>
+
 <script src="js/script.js"></script>
+<script src="js/home.js"></script>
 
 </body>
 </html>

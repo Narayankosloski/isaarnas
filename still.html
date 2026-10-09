@@ -4,71 +4,60 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Still Photography | Isa Arnas</title>
+<title>Still Photography | Isa Arnass</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-
+<link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/still.css">
-
 </head>
 <body>
 
 <nav>
 
     <a href="index.html">ISA ARNASS</a>
-    
+
     <div class="dropdown">
 
-        <button class="menu-button">
-            |||
-        </button>
+        <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-overlay">|||</button>
 
+        <div class="menu-overlay" id="menu-overlay">
 
-            <div class="menu-overlay">
+            <div class="overlay-links">
 
-                <div class="overlay-links">
-
-                    <a href="index.html">
-                        HOME
-                    </a>
-
-                    <a href="still.html" class="current">
-                        STILLS
-                    </a>
-
-                    <a href="works.html">
-                        WORKS
-                    </a>
-
-                    <a href="about.html">
-                        ABOUT
-                    </a>
-
-                </div>
+                <a href="index.html">HOME</a>
+                <a href="still.html" class="current" aria-current="page">STILLS</a>
+                <a href="works.html">WORKS</a>
+                <a href="about.html">ABOUT</a>
 
             </div>
+
+        </div>
 
     </div>
 
 </nav>
+
 <section class="hero">
-<h1>Stills</h1>
+    <h1>Stills</h1>
 </section>
 
-<div class="gallery">
+<main class="gallery">
 
-<div class="project"><img src="./img/a.jpg"></div>
-<div class="project"><img src="./img/s.jpg"></div>
-<div class="project"><img src="./img/d.jpg"></div>
-<div class="project"><img src="./img/f.jpg"></div>
-<div class="project"><img src="./img/g.jpg"></div>
-<div class="project"><img src="/img/h.jpg"></div>
+    <button class="project wide reveal" type="button" aria-label="Ampliar foto 1"><img src="./img/a.jpg" alt="Still 1" loading="lazy"></button>
+    <button class="project reveal" type="button" aria-label="Ampliar foto 2"><img src="./img/s.jpg" alt="Still 2" loading="lazy"></button>
+    <button class="project reveal" type="button" aria-label="Ampliar foto 3"><img src="./img/d.jpg" alt="Still 3" loading="lazy"></button>
+    <button class="project reveal" type="button" aria-label="Ampliar foto 4"><img src="./img/f.jpg" alt="Still 4" loading="lazy"></button>
+    <button class="project reveal" type="button" aria-label="Ampliar foto 5"><img src="./img/g.jpg" alt="Still 5" loading="lazy"></button>
+    <button class="project wide reveal" type="button" aria-label="Ampliar foto 6"><img src="./img/h.jpg" alt="Still 6" loading="lazy"></button>
 
-</div>
+</main>
 
-<div class="cursor"></div>
+<div class="cursor" aria-hidden="true"></div>
 
+<script src="js/script.js"></script>
 <script src="js/still.js"></script>
 </body>
 </html>

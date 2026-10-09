@@ -4,52 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>trabalhos | Isa Arnass</title>
+<title>Trabalhos | Isa Arnass</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/works.css">
-
 </head>
 <body>
-
-
 
 <nav>
 
     <a href="index.html">ISA ARNASS</a>
-    
+
     <div class="dropdown">
 
-        <button class="menu-button">
-            |||
-        </button>
+        <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-overlay">|||</button>
 
+        <div class="menu-overlay" id="menu-overlay">
 
-            <div class="menu-overlay">
+            <div class="overlay-links">
 
-                <div class="overlay-links">
-
-                    <a href="index.html" >
-                        HOME
-                    </a>
-
-                    <a href="still.html">
-                        STILLS  
-                    </a>
-
-                    <a href="works.html" class="current">
-                        WORKS
-                    </a>
-
-                    <a href="about.html">
-                        ABOUT
-                    </a>
-
-                </div>
+                <a href="index.html">HOME</a>
+                <a href="still.html">STILLS</a>
+                <a href="works.html" class="current" aria-current="page">WORKS</a>
+                <a href="about.html">ABOUT</a>
 
             </div>
-
 
         </div>
 
@@ -61,30 +44,118 @@
     <h1>Trabalhos</h1>
 </section>
 
-<div class="project">
-    <h2>Projeto 01</h2>
+<main>
 
-    <div class="image-wrapper">
-        <img src="./img/a.jpg" alt="Projeto 01">
+    <article class="project reveal">
+
+        <div class="project-head">
+            <h2>Projeto 01</h2>
+            <span class="project-year">2025</span>
+        </div>
+
+        <!-- MÍDIA: troque este bloco por um dos modelos do final do arquivo -->
+        <div class="media">
+            <img src="./img/a.jpg" alt="Projeto 01" loading="lazy">
+        </div>
+
+        <div class="project-info">
+
+            <div class="project-desc">
+                <p>Descrição do projeto: conceito, referências, processo e contexto da produção.</p>
+            </div>
+
+            <dl class="project-meta">
+                <div><dt>FUNÇÃO</dt><dd>Direção de fotografia</dd></div>
+                <div><dt>CLIENTE</dt><dd>Nome do cliente</dd></div>
+                <div><dt>ANO</dt><dd>2025</dd></div>
+            </dl>
+
+        </div>
+
+    </article>
+
+    <article class="project reveal">
+
+        <div class="project-head">
+            <h2>Projeto 02</h2>
+            <span class="project-year">2025</span>
+        </div>
+
+        <!-- MÍDIA: troque este bloco por um dos modelos do final do arquivo -->
+        <div class="media">
+            <img src="./img/s.jpg" alt="Projeto 02" loading="lazy">
+        </div>
+
+        <div class="project-info">
+
+            <div class="project-desc">
+                <p>Descrição do projeto: conceito, referências, processo e contexto da produção.</p>
+            </div>
+
+            <dl class="project-meta">
+                <div><dt>FUNÇÃO</dt><dd>Direção de fotografia</dd></div>
+                <div><dt>CLIENTE</dt><dd>Nome do cliente</dd></div>
+                <div><dt>ANO</dt><dd>2025</dd></div>
+            </dl>
+
+        </div>
+
+    </article>
+
+    <article class="project reveal">
+
+        <div class="project-head">
+            <h2>Projeto 03</h2>
+            <span class="project-year">2025</span>
+        </div>
+
+        <!-- MÍDIA: troque este bloco por um dos modelos do final do arquivo -->
+        <div class="media">
+            <img src="./img/d.jpg" alt="Projeto 03" loading="lazy">
+        </div>
+
+        <div class="project-info">
+
+            <div class="project-desc">
+                <p>Descrição do projeto: conceito, referências, processo e contexto da produção.</p>
+            </div>
+
+            <dl class="project-meta">
+                <div><dt>FUNÇÃO</dt><dd>Direção de fotografia</dd></div>
+                <div><dt>CLIENTE</dt><dd>Nome do cliente</dd></div>
+                <div><dt>ANO</dt><dd>2025</dd></div>
+            </dl>
+
+        </div>
+
+    </article>
+
+    <!--
+    ===== MODELOS DE MÍDIA (copie no lugar do <div class="media"> de um projeto) =====
+
+    1) Vídeo próprio (arquivo na pasta video/):
+    <div class="media">
+        <video src="./video/projeto01.mp4" poster="./img/a.jpg" controls playsinline preload="metadata"></video>
     </div>
-</div>
 
-<div class="project">
-    <h2>Projeto 02</h2>
-
-    <div class="image-wrapper">
-        <img src="./img/s.jpg" alt="Projeto 02">
+    2) YouTube:
+    <div class="media embed">
+        <iframe src="https://www.youtube.com/embed/ID_DO_VIDEO" title="Projeto 01" allowfullscreen loading="lazy"></iframe>
     </div>
-</div>
 
-<div class="project">
-    <h2>Projeto 03</h2>
-
-    <div class="image-wrapper">
-        <img src="./img/d.jpg" alt="Projeto 03">
+    3) Vimeo:
+    <div class="media embed">
+        <iframe src="https://player.vimeo.com/video/ID_DO_VIDEO" title="Projeto 01" allowfullscreen loading="lazy"></iframe>
     </div>
-</div>
-<div class="cursor"></div>
+
+    Para link externo (making of, site do cliente) coloque dentro de .project-desc:
+    <a class="project-link" href="https://..." target="_blank" rel="noopener">Ver projeto</a>
+    -->
+
+</main>
+
+<div class="cursor" aria-hidden="true"></div>
+
 <script src="js/script.js"></script>
 </body>
 </html>

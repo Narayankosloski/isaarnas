@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>About | Isa Arnass</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/about.css">
 </head>
 <body>
@@ -14,71 +18,45 @@
 <nav>
 
     <a href="index.html">ISA ARNASS</a>
-    
+
     <div class="dropdown">
 
-        <button class="menu-button">
-            |||
-        </button>
+        <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-overlay">|||</button>
 
+        <div class="menu-overlay" id="menu-overlay">
 
-            <div class="menu-overlay">
+            <div class="overlay-links">
 
-                <div class="overlay-links">
-
-                    <a href="index.html" >
-                        HOME
-                    </a>
-
-                    <a href="still.html">
-                        STILLS
-                    </a>
-
-                    <a href="works.html">
-                        WORKS
-                    </a>
-
-                    <a href="about.html"class="current">
-                        ABOUT
-                    </a>
-
-                </div>
+                <a href="index.html">HOME</a>
+                <a href="still.html">STILLS</a>
+                <a href="works.html">WORKS</a>
+                <a href="about.html" class="current" aria-current="page">ABOUT</a>
 
             </div>
 
-
-        
+        </div>
 
     </div>
 
 </nav>
-</section>
-	
-<div class="about">
 
-<img src="img/e.jpg">
+<main class="about">
 
-<div>
+    <img class="reveal" src="img/e.jpg" alt="Isa Arnass">
 
-<section class="hero">
-<h1>Isa Arnass</h1>
-</section>
-<p>
-Fotógrafa, diretora de fotografia e artista visual.
-</p>
+    <div class="about-text reveal">
 
-<p>
-Seu trabalho explora luz, atmosfera,
-narrativa e memória através da imagem.
-</p>
+        <h1>Isa Arnass</h1>
 
-</div>
+        <p>Fotógrafa, diretora de fotografia e artista visual.</p>
 
-</div>
+        <p>Seu trabalho explora luz, atmosfera, narrativa e memória através da imagem.</p>
 
-</section>
+    </div>
 
-<div class="cursor"></div>
+</main>
+
+<div class="cursor" aria-hidden="true"></div>
 
 <script src="js/script.js"></script>
 </body>

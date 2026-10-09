@@ -1,71 +1,69 @@
+/* =========================================
+   STILLS — lightbox (ampliar foto, setas, ESC)
+========================================= */
 
+(() => {
 
-const projects = document.querySelectorAll('.project');
+    const photos = [...document.querySelectorAll('.gallery .project img')];
+    if (!photos.length) return;
 
-const observer = new IntersectionObserver((entries)=>{
+    const box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-label', 'Foto ampliada');
+    box.innerHTML = `
+        <button class="lb-close" type="button" aria-label="Fechar">Fechar</button>
+        <button class="lb-prev" type="button" aria-label="Foto anterior">Anterior</button>
+        <img alt="">
+        <button class="lb-next" type="button" aria-label="Próxima foto">Próxima</button>
+        <div class="lb-count"></div>
+    `;
+    document.body.appendChild(box);
 
-    entries.forEach(entry=>{
+    const img = box.querySelector('img');
+    const count = box.querySelector('.lb-count');
+    let index = 0;
 
-        if(entry.isIntersecting){
+    const render = () => {
+        img.src = photos[index].src;
+        img.alt = photos[index].alt;
+        count.textContent = (index + 1) + ' / ' + photos.length;
+    };
 
-            entry.target.classList.add('show');
+    const open = i => {
+        index = i;
+        render();
+        box.classList.add('active');
+        document.body.classList.add('menu-open'); // trava o scroll
+    };
 
-        }
+    const close = () => {
+        box.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    };
 
+    const step = dir => {
+        index = (index + dir + photos.length) % photos.length;
+        render();
+    };
+
+    photos.forEach((photo, i) => {
+        photo.closest('.project').addEventListener('click', () => open(i));
     });
 
-},{
-    threshold:0.15
-});
+    box.querySelector('.lb-close').addEventListener('click', close);
+    box.querySelector('.lb-prev').addEventListener('click', () => step(-1));
+    box.querySelector('.lb-next').addEventListener('click', () => step(1));
 
-projects.forEach(project=>{
-    observer.observe(project);
-});
-
-
-/* Cursor */
-
-const cursor = document.querySelector('.cursor');
-
-document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-
-document.querySelectorAll('a').forEach(link => {
-
-    link.addEventListener('mouseenter', () => {
-        cursor.classList.add('hover');
+    box.addEventListener('click', e => {
+        if (e.target === box) close();
     });
 
-    link.addEventListener('mouseleave', () => {
-        cursor.classList.remove('hover');
+    document.addEventListener('keydown', e => {
+        if (!box.classList.contains('active')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') step(-1);
+        if (e.key === 'ArrowRight') step(1);
     });
 
-});
-
-
-
-const menuButton =
-document.querySelector('.menu-button');
-
-const overlay =
-document.querySelector('.menu-overlay');
-
-menuButton.addEventListener('click',()=>{
-
-    overlay.classList.toggle('active');
-
-});
-
-overlay.addEventListener('click',(e)=>{
-
-    if(e.target === overlay){
-
-        overlay.classList.remove('active');
-
-    }
-
-});
-
-
+})();

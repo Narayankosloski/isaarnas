@@ -1,86 +1,92 @@
+/* =========================================
+   SCRIPT COMUM — todas as páginas
+   cursor + menu overlay + animação de entrada
+========================================= */
 
+(() => {
 
-const slides = document.querySelectorAll('.slide');
+    const body = document.body;
 
-let current = 0;
-let scrolling = false;
+    /* ---------- CURSOR ---------- */
 
-window.addEventListener('wheel', (e) => {
+    const cursor = document.querySelector('.cursor');
 
-    if (scrolling) return;
+    if (cursor && window.matchMedia('(hover:hover)').matches) {
 
-    scrolling = true;
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.classList.add('visible');
+        });
 
-    slides[current].classList.remove('active');
+        document.addEventListener('mouseleave', () => {
+            cursor.classList.remove('visible');
+        });
 
-    if (e.deltaY > 0) {
-
-        current++;
-
-        if (current >= slides.length) {
-            current = 0;
-        }
-
-    } else {
-
-        current--;
-
-        if (current < 0) {
-            current = slides.length - 1;
-        }
-
-    }
-
-    slides[current].classList.add('active');
-
-    setTimeout(() => {
-        scrolling = false;
-    }, 800);
-
-});
-
-/* Cursor */
-
-const cursor = document.querySelector('.cursor');
-
-document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-
-document.querySelectorAll('a').forEach(link => {
-
-    link.addEventListener('mouseenter', () => {
-        cursor.classList.add('hover');
-    });
-
-    link.addEventListener('mouseleave', () => {
-        cursor.classList.remove('hover');
-    });
-
-});
-
-
-
-const menuButton =
-document.querySelector('.menu-button');
-
-const overlay =
-document.querySelector('.menu-overlay');
-
-menuButton.addEventListener('click',()=>{
-
-    overlay.classList.toggle('active');
-
-});
-
-overlay.addEventListener('click',(e)=>{
-
-    if(e.target === overlay){
-
-        overlay.classList.remove('active');
+        // delegação: funciona também em elementos criados depois (ex.: lightbox)
+        document.addEventListener('mouseover', e => {
+            cursor.classList.toggle(
+                'hover',
+                !!e.target.closest('a, button, [data-hover]')
+            );
+        });
 
     }
 
-});
+    /* ---------- MENU OVERLAY ---------- */
 
+    const menuButton = document.querySelector('.menu-button');
+    const overlay = document.querySelector('.menu-overlay');
+
+    if (menuButton && overlay) {
+
+        const setMenu = open => {
+            overlay.classList.toggle('active', open);
+            body.classList.toggle('menu-open', open);
+            menuButton.setAttribute('aria-expanded', open);
+            menuButton.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+            menuButton.textContent = open ? '✕' : '|||';
+        };
+
+        menuButton.addEventListener('click', () => {
+            setMenu(!overlay.classList.contains('active'));
+        });
+
+        // clicar no fundo ou em um link fecha o menu
+        overlay.addEventListener('click', e => {
+            if (e.target === overlay || e.target.closest('.overlay-links')) {
+                if (e.target === overlay) setMenu(false);
+            }
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') setMenu(false);
+        });
+
+    }
+
+    /* ---------- ANIMAÇÃO DE ENTRADA ---------- */
+
+    const items = document.querySelectorAll('.reveal');
+
+    if (items.length) {
+
+        if (!('IntersectionObserver' in window)) {
+            items.forEach(el => el.classList.add('show'));
+            return;
+        }
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: .15 });
+
+        items.forEach(el => observer.observe(el));
+
+    }
+
+})();
